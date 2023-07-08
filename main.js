@@ -15,12 +15,12 @@ const ewelink = require('ewelink-api');
 
     const p3 = await connection.getDevice("100169010c")
 
-    if (p3.params.power > 100) {
+    if (p3.params.power > 400) {
         const status = await connection.setDevicePowerState('10017c642b', 'on');
         console.log(status)
     }
 
-    if (p3.params.power < 100) {
+    if (p3.params.power < 400) {
         const status = await connection.setDevicePowerState('10017c642b', 'off');
         console.log(status)
     }
