@@ -14,7 +14,6 @@ const ewelink = require('ewelink-api');
     // console.log(devices);
 
     const p3 = await connection.getDevice("100169010c")
-    const solar = await connection.getDevice("10017c642b")
 
     if (p3.params.power > 500) {
         const status = await connection.setDevicePowerState('10017c642b', 'on');
