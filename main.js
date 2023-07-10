@@ -1,7 +1,13 @@
 const ewelink = require('ewelink-api');
 
-(async () => {
+const generationMaxPower = 300
 
+async function toggleGeneration(connection, state) {
+    const status = await connection.setDevicePowerState('10017c642b', state);
+    console.log(status)
+}
+
+(async () => {
     const connection = new ewelink({
         email: 'maxpavlovdpvideo@gmail.com',
         password: 'xxx',
@@ -13,15 +19,26 @@ const ewelink = require('ewelink-api');
     // console.log(connection)
     // console.log(devices);
 
-    const p3 = await connection.getDevice("100169010c")
+    const generation = await connection.getDevice("10017c642b");
+    const counter = await connection.getDevice("100169010c");
 
-    if (p3.params.power > 200) {
-        const status = await connection.setDevicePowerState('10017c642b', 'on');
-        console.log(status)
-    }
+    const generationState = generation.params.switch;
+    console.log("generationState: " + generationState)
 
-    if (p3.params.power < 200) {
-        const status = await connection.setDevicePowerState('10017c642b', 'off');
-        console.log(status)
+    const generationPower = generation.params.power
+    console.log("generationPower: " + generationPower)
+
+    // always positive
+    const counterPower = counter.params.power
+    console.log("counterPower: " + counterPower)
+
+
+    // 1 - no risk
+    // 15 - 100% risk
+    const overgenerationRiskCoef = 4;
+    if (counterPower > generationMaxPower / overgenerationRiskCoef) {
+        await toggleGeneration(connection, "on")
+    } else {
+        await toggleGeneration(connection, "off")
     }
 })();
