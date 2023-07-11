@@ -1,10 +1,10 @@
 const ewelink = require('ewelink-api');
 const {getSunrise, getSunset} = require('sunrise-sunset-js')
 
-const GENERATION_MAX_POWER = 300
 // 1 - no risk
 // 15 - 100% risk
 const OVER_GENERATION_RISK = 4;
+const GENERATION_MAX_POWER = 300
 
 const COUNTER_DEVICE = "100169010c";
 const GENERATION_DEVICE = '1001d97df7';
@@ -12,7 +12,6 @@ const GENERATION_DEVICE = '1001d97df7';
 async function toggleGeneration(connection, state) {
     const status = await connection.setDevicePowerState(GENERATION_DEVICE, state);
     console.log(status)
-
 }
 
 (async () => {
