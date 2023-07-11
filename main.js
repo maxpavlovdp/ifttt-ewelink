@@ -2,11 +2,14 @@ const ewelink = require('ewelink-api');
 
 const generationMaxPower = 300
 
-async function toggleGeneration(connection, state) {
-    const status = await connection.setDevicePowerState('10017c642b', state);
-    console.log(status)
-}
+const COUNTER_DEVICE = "100169010c";
+const GENERATION_DEVICE = '1001d97df7';
 
+async function toggleGeneration(connection, state) {
+    const status = await connection.setDevicePowerState(GENERATION_DEVICE, state);
+    console.log(status)
+
+}
 (async () => {
     const connection = new ewelink({
         email: 'maxpavlovdpvideo@gmail.com',
@@ -19,8 +22,8 @@ async function toggleGeneration(connection, state) {
     // console.log(connection)
     // console.log(devices);
 
-    const generation = await connection.getDevice("1001d97df7")
-    const counter = await connection.getDevice("100169010c")
+    const generation = await connection.getDevice(GENERATION_DEVICE)
+    const counter = await connection.getDevice(COUNTER_DEVICE)
 
     const generationState = generation.params.switch;
     console.log("generationState: " + generationState)
