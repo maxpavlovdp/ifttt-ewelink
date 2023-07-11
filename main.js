@@ -2,6 +2,7 @@ const ewelink = require('ewelink-api');
 const {getSunrise, getSunset} = require('sunrise-sunset-js')
 const props = require('./props');
 
+
 // 1 - no risk
 // 15 - 100% risk
 const OVER_GENERATION_RISK = 4;
