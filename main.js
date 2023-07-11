@@ -19,8 +19,8 @@ async function toggleGeneration(connection, state) {
     // console.log(connection)
     // console.log(devices);
 
-    const generation = await connection.getDevice("10017c642b");
-    const counter = await connection.getDevice("100169010c");
+    const generation = await connection.getDevice("1001d97df7")
+    const counter = await connection.getDevice("100169010c")
 
     const generationState = generation.params.switch;
     console.log("generationState: " + generationState)
