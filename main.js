@@ -2,6 +2,8 @@ const ewelink = require('ewelink-api');
 const {getSunrise, getSunset} = require('sunrise-sunset-js')
 
 const GENERATION_MAX_POWER = 300
+// 1 - no risk
+// 15 - 100% risk
 const OVER_GENERATION_RISK = 4;
 
 const COUNTER_DEVICE = "100169010c";
@@ -46,9 +48,6 @@ async function toggleGeneration(connection, state) {
     const isDaytime = sunrise < now > sunset
     console.log("isDaytime: " + isDaytime)
 
-
-    // 1 - no risk
-    // 15 - 100% risk
     if (isDaytime &&
         (counterPower < 50 || counterPower > GENERATION_MAX_POWER / OVER_GENERATION_RISK)
     ) {
