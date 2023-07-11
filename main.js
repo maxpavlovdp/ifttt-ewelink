@@ -1,4 +1,5 @@
 const ewelink = require('ewelink-api');
+const {getSunrise, getSunset} = require('sunrise-sunset-js')
 
 const generationMaxPower = 300
 
@@ -10,6 +11,7 @@ async function toggleGeneration(connection, state) {
     console.log(status)
 
 }
+
 (async () => {
     const connection = new ewelink({
         email: 'maxpavlovdpvideo@gmail.com',
@@ -30,16 +32,22 @@ async function toggleGeneration(connection, state) {
 
     const generationPower = generation.params.power
     console.log("generationPower: " + generationPower)
-
     // always positive
     const counterPower = counter.params.power
     console.log("counterPower: " + counterPower)
+
+    const sunsetHours = getSunset(50.432394, 30.616584).getHours()
+    console.log("sunsetHours: " + sunsetHours)
+    const nowHours = new Date().getHours()
+    console.log("nowHours: " + nowHours)
 
 
     // 1 - no risk
     // 15 - 100% risk
     const overgenerationRiskCoef = 4;
-    if (counterPower < 50 || counterPower > generationMaxPower / overgenerationRiskCoef) {
+    if (nowHours < sunsetHours &&
+        (counterPower < 50 || counterPower > generationMaxPower / overgenerationRiskCoef)
+    ) {
         await toggleGeneration(connection, "on")
     } else {
         await toggleGeneration(connection, "off")
