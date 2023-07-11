@@ -35,7 +35,7 @@ async function toggleGeneration(connection, state) {
 
     // 1 - no risk
     // 15 - 100% risk
-    const overgenerationRiskCoef = 3;
+    const overgenerationRiskCoef = 2;
     if (counterPower > generationMaxPower / overgenerationRiskCoef) {
         await toggleGeneration(connection, "on")
     } else {
