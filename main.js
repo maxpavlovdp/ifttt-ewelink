@@ -36,16 +36,20 @@ async function toggleGeneration(connection, state) {
     const counterPower = counter.params.power
     console.log("counterPower: " + counterPower)
 
-    const sunsetHours = getSunset(50.432394, 30.616584).getHours()
-    console.log("sunsetHours: " + sunsetHours)
-    const nowHours = new Date().getHours()
-    console.log("nowHours: " + nowHours)
+    const now = new Date()
+    console.log("now: " + now)
+    const sunset = getSunset(50.432394, 30.616584)
+    console.log("sunset: " + sunset)
+    const sunrise = getSunrise(50.432394, 30.616584)
+    console.log("sunrise: " + sunrise)
+    const isDaytime = sunrise < now > sunset
+    console.log("isDaytime: " + isDaytime)
 
 
     // 1 - no risk
     // 15 - 100% risk
     const overgenerationRiskCoef = 4;
-    if (nowHours < sunsetHours &&
+    if (isDaytime &&
         (counterPower < 50 || counterPower > generationMaxPower / overgenerationRiskCoef)
     ) {
         await toggleGeneration(connection, "on")
