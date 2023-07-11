@@ -1,5 +1,6 @@
 const ewelink = require('ewelink-api');
 const {getSunrise, getSunset} = require('sunrise-sunset-js')
+const props = require('./props');
 
 // 1 - no risk
 // 15 - 100% risk
@@ -17,7 +18,7 @@ async function toggleGeneration(connection, state) {
 (async () => {
     const connection = new ewelink({
         email: 'maxpavlovdpvideo@gmail.com',
-        password: 'xxx',
+        password: props.password,
         region: 'eu',
     });
 
