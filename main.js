@@ -5,7 +5,7 @@ const props = require('./props');
 
 // 1 - no risk
 // 15 - 100% risk
-const OVER_GENERATION_RISK = 4
+const OVER_GENERATION_RISK = 1
 const GENERATION_MAX_POWER = 380
 
 const COUNTER_DEVICE = "100169010c"
@@ -31,7 +31,7 @@ async function toggleGeneration(connection, state) {
     const generation = await connection.getDevice(GENERATION_DEVICE)
     const counter = await connection.getDevice(COUNTER_DEVICE)
 
-    const generationState = generation.params.switch;
+    const generationState = generation.params.switch
     console.log("generationState: " + generationState)
 
     const generationPower = generation.params.power
