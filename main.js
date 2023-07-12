@@ -4,8 +4,8 @@ const props = require('./props');
 
 
 // 1 - no risk
-// 15 - 100% risk
-const OVER_GENERATION_RISK = 1
+// 5 - 100% risk
+const OVER_GENERATION_RISK = 4
 const GENERATION_MAX_POWER = 380
 
 const COUNTER_DEVICE = "100169010c"
