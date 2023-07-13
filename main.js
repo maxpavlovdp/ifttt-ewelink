@@ -46,7 +46,7 @@ async function toggleGeneration(connection, state) {
     console.log("sunset: " + sunset)
     const sunrise = getSunrise(50.432394, 30.616584)
     console.log("sunrise: " + sunrise)
-    const isDaytime = sunrise < now < sunset
+    const isDaytime = sunrise < now && now < sunset
     console.log("isDaytime: " + isDaytime)
 
     if (isDaytime &&
