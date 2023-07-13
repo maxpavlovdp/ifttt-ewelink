@@ -50,7 +50,7 @@ async function toggleGeneration(connection, state) {
     console.log("isDaytime: " + isDaytime)
 
     if (isDaytime &&
-        (counterPower < 70 || counterPower > GENERATION_MAX_POWER / OVER_GENERATION_RISK)
+        (counterPower < 110 || counterPower > GENERATION_MAX_POWER / OVER_GENERATION_RISK)
     ) {
         await toggleGeneration(connection, "on")
     } else {
