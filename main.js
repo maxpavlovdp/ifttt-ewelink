@@ -49,11 +49,11 @@ async function toggleGeneration(connection, state) {
     const isDaytime = sunrise < now && now < sunset
     console.log("isDaytime: " + isDaytime)
 
-    if (isDaytime &&
-        (counterPower < 140 || counterPower > GENERATION_MAX_POWER / OVER_GENERATION_RISK)
+    if (isDaytime
+        // && (counterPower < 140 || counterPower > GENERATION_MAX_POWER / OVER_GENERATION_RISK)
     ) {
         await toggleGeneration(connection, "on")
     } else {
-       // check how much we can await toggleGeneration(connection, "off")
+        await toggleGeneration(connection, "off")
     }
 })();
