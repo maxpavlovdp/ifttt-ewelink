@@ -54,6 +54,6 @@ async function toggleGeneration(connection, state) {
     ) {
         await toggleGeneration(connection, "on")
     } else {
-        await toggleGeneration(connection, "off")
+       // check how much we can await toggleGeneration(connection, "off")
     }
 })();
